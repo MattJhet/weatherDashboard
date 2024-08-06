@@ -1,0 +1,10 @@
+.Dashboard {
+    text-align: center;
+}
+
+body {
+    background-color: #8C52FF;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif' 
+    ;
+    display: flex;
+}

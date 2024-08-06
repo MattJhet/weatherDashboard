@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="stylesheet" href="./assets/css/style.css">
+        <title>Weather Dashboard</title>
+    </head>
+    <body>
+        <header class="Dashboard">
+            <h1>Weather Dashboard</h1>
+        </header>
+
+        <section class="citySearch">
+            <input type="text" id="city" placeholder="Enter City">
+            <button onclick="getWeather()">Search</button>
+          
+        </section>
+
+        <section class="todaysForecast">
+            <img id="weather-icon" alt="Weather Icon">
+
+            <div id="temp-div"></div>
+            
+            <div id="weather-info"></div>
+            
+            <div id="hourly-forecast"></div>
+        </section>
+
+        <section class="5-dayForecast">
+
+        </section>
+        <script src="./assets/JavaScript/script.js"></script>
+    </body>
+</html>
