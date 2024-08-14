@@ -10,7 +10,7 @@ function getWeather() {
         return;
     }
 
-    const currentWeatherUrl =`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`;
+    const currentWeatherUrl =`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
     const forecastUrl =`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
 
     fetch(currentWeatherUrl) 
@@ -21,7 +21,8 @@ function getWeather() {
         .catch(error => {
             console.error('Error fetching current weather data:', error);
             alert('Error fetching current weather data. Please try again.');
-        })
+        });
+
     fetch(forecastUrl)
         .then(response => response.json())
         .then(data => {
@@ -31,8 +32,8 @@ function getWeather() {
             console.error('Error fetching hourly weather data:', error);
             alert('Error fetching hourly weather data. Please try again.');
         })
-}
-function showIamge(){
+    }
+function showImage(){
     const weatherIcon = document.getElementById('weather-icon');
     weatherIcon.style.display = 'block';
 }
@@ -65,8 +66,8 @@ function displayWeather(data) {
         `;
         const weatherHTML = `
             <p>${cityName}</p>
-            <p>${descriptionc}</p>
-        `
+            <p>${description}</p>
+        ` ;
         tempDivInfo.innerHTML = temperatureHTML;
         weatherInfoDiv.innerHTML = weatherHTML;
         weatherIcon.src = iconUrl;
@@ -87,7 +88,7 @@ function displayHourlyForecast(hourlyData) {
         const dateTime = new Date(item.dt * 1000);
         const hour = dateTime.getHours();
         const temperature = Math.round(item.main.temp - 273.15);
-        const iconCode = data.weather[0].icon;
+        const iconCode = item.weather[0].icon;
         const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@4x.png`;
 
         const hourlyItemHTML = `
