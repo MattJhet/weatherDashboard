@@ -8,17 +8,13 @@
         <title>Weather Dashboard</title>
     </head>
     <body>
-        <header class="Dashboard">
-            <h1>Weather Dashboard</h1>
-        </header>
+       
 
-        <section class="citySearch">
+        <section id="weather-container">
+            <h2>Weather Dashboard</h2>
             <input type="text" id="city" placeholder="Enter City">
             <button onclick="getWeather()">Search</button>
-          
-        </section>
-
-        <section class="todaysForecast">
+            
             <img id="weather-icon" alt="Weather Icon">
 
             <div id="temp-div"></div>
@@ -27,8 +23,12 @@
             
             <div id="hourly-forecast"></div>
         </section>
+<!-- 
+        <section class="todaysForecast">
+            
+        </section>
 
-        <section class="5-dayForecast">
+        <section class="5-dayForecast"> -->
 
         </section>
         <script src="./assets/JavaScript/script.js"></script>
