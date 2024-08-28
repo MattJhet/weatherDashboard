@@ -26,11 +26,11 @@ function getWeather() {
     fetch(forecastUrl)
         .then(response => response.json())
         .then(data => {
-            displayHourlyForecast(data.list);
+            displayDailyForecast(data.list);
         })
         .catch(error => {
-            console.error('Error fetching hourly weather data:', error);
-            alert('Error fetching hourly weather data. Please try again.');
+            console.error('Error fetching 5-day weather data:', error);
+            alert('Error fetching 5-day weather data. Please try again.');
         })
     }
 function showImage(){
@@ -44,11 +44,11 @@ function displayWeather(data) {
     const tempDivInfo = document.getElementById('temp-div');
     const weatherInfoDiv = document.getElementById('weather-info');
     const weatherIcon = document.getElementById('weather-icon');
-    const hourlyForecastDiv = document.getElementById('hourly-forecast');
+    const dailyForecastDiv = document.getElementById('5-dayForecast');
 
     //Clear previous existing content
     weatherInfoDiv.innerHTML ='';
-    hourlyForecastDiv.innerHTML ='';
+    dailyForecastDiv.innerHTML ='';
     tempDivInfo.innerHTML ='';
 
     
@@ -79,24 +79,54 @@ function displayWeather(data) {
     
 }
 
+{
+    "daily": [
+        {
+            "dt": 1689897600,
+            "temp": {
+                "day": 293.15
+            },
+            "weather": [
+                {
+                    "icon": "01d"
+                }
+            ]
+        },
+        // Additional days
+    ]
+}
+function displayDailyForecast(dailyData) {
+    const dailyForecastDiv = document.getElementById('5-dayForecast');
+    const next5Days = dailyData.slice(0, 5);
+    // Clear the existing content
+    dailyForecastDiv.innerHTML = '';
 
-function displayHourlyForecast(hourlyData) {
-    const hourlyForecastDiv = document.getElementById('hourly-forecast');
-    const next24Hours = hourlyData.slice(0, 8);
-
-    next24Hours.forEach(item => {
+    // Arrays to map day numbers to names
+    const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    
+    next5Days.forEach(item => {
+        // Convert Unix timestamp to JavaScript Date object
         const dateTime = new Date(item.dt * 1000);
-        const hour = dateTime.getHours();
-        const temperature = Math.round(item.main.temp - 273.15);
+
+        // Extract the day of the week from the Date object
+        const dayNumber = dateTime.getDay();
+        const dayName = dayNames[dayNumber];
+        
+        const temperature = Math.round(item.main.temp -273.15);
+        // Construct icon URL
         const iconCode = item.weather[0].icon;
         const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@4x.png`;
 
-        const hourlyItemHTML = `
-        <div class="hourly-item">
-            <span>${hour}:00</span>
-            <img src="${iconUrl}" alt="Hourly Weather Icon">
+        // Build the HTML string for the current daily item
+        const dailyItemHTML = `
+        <div class="daily-item">
+            <span>${dayName}</span>
+            <img src="${iconUrl}" alt="Daily Weather Icon">
             <span>${temperature}°C</span>
+        </div>
         `;
-        hourlyForecastDiv.innerHTML += hourlyItemHTML;
+        
+        // Append the daily item HTML to the container
+        dailyForecastDiv.innerHTML += dailyItemHTML;
     });
 }

@@ -71,7 +71,7 @@ button:hover {
     display: none;
 }
 
-#hourly-forecast {
+#5-dayForecast {
     margin-top: 50px;
     overflow-x: auto;
     white-space: nowrap;
@@ -79,7 +79,7 @@ button:hover {
     justify-content: space-between;
 }
 
-.hourly-item {
+.daily-item {
     flex: 0 0 auto;
     width: 80px;
     display: flex;
@@ -89,14 +89,14 @@ button:hover {
     color: white;
 }
 
-.hourly-item img {
+.daily-item img {
     width: 30px;
     height: 30px;
     margin-bottom: 5px;
 
 }
 
-#hourly-heading {
+#daily-heading {
     color: #fff;
     margin-top: 10px;
 }
